@@ -11,18 +11,16 @@ import binascii
 
 #创建函数
 #联网检测函数
-def grab():
+def grab(mainurl):
     #当前有效网址
-    global mainurl
-    mainurl = 'copymanga.site'
-    print ("确认当前网站地址有效性: "+mainurl)
+    print ("确认当前网站地址有效性: " + mainurl)
     confirm1=str(requests.get(f'https://{mainurl}'))
     confirm2="<Response [200]>"
     if confirm1==confirm2:
             print('当前地址有效！')
     else:
         mainurl = input('当前网站地址失效，在此输入新的地址')
-        grab()
+        grab(mainurl)
 
 #下载函数
 def download(num):
@@ -48,7 +46,8 @@ def download(num):
 
 
 #联网检测
-grab()
+mainurl = 'copymanga.site'
+grab(mainurl)
 
 #漫画搜索
 searchname=parse.quote(input('请输入你想要搜索的漫画名称:'))
@@ -91,7 +90,9 @@ cipher = binascii.a2b_hex(listcipher[16:])
 mode = AES.MODE_CBC
 aes = AES.new(key, mode, iv)
 cplistb = aes.decrypt(cipher)
-cplist = cplistb.decode('utf-8')[:-6]
+cplist = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\xff]',"",cplistb.decode('utf-8'))
+print(cplist)
+
 
 #处理章节列表并显示
 listjson = json.loads(cplist)
