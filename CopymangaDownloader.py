@@ -7,6 +7,7 @@ from urllib import parse
 import re
 from Crypto.Cipher import AES
 import binascii
+import threading
 
 
 #创建函数
@@ -24,6 +25,7 @@ def grab(mainurl):
 
 #下载函数
 def download(num):
+    print(f'开始下载{num}：{namelist[num]}')
     counter = 1
     filename = str(counter).zfill(4)
     cpurl = f'https://api.{mainurl}/api/v3/comic/{pathword}/chapter/{uuidlist[num]}'
@@ -40,7 +42,7 @@ def download(num):
         with open(f"./{manganame}/{namelist[num]}/{filename}.jpg",'wb') as w:
             w.write(cache.content)
             w.close
-        print(f"成功下载图片{filename}.jpg")
+        print(f"成功下载图片：{namelist[num]}，{filename}.jpg")
         counter = counter + 1
         filename=str(counter).zfill(4)
 
@@ -121,6 +123,7 @@ dlchoicee = int(input('请输入下载范围终止序号:'))
 
 
 #下载
+
 if os.path.isdir(f"./{manganame}"):
     pass
 else:
@@ -128,9 +131,10 @@ else:
 i = 0
 for i in range(dlchoices,dlchoicee + 1):
     dlchoicer = dlchoicee - i
-    print(f'正在下载{i}：{namelist[i]}，待下载章节数：{dlchoicer}')
-    download(i)
+    t = threading.Thread(target = download , args = (i,))
+    t.start()
 else:
+    t.join()
     print('下载结束')
 
 
