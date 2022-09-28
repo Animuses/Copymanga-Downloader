@@ -93,7 +93,6 @@ mode = AES.MODE_CBC
 aes = AES.new(key, mode, iv)
 cplistb = aes.decrypt(cipher)
 cplist = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\xff]',"",cplistb.decode('utf-8'))
-print(cplist)
 
 
 #处理章节列表并显示

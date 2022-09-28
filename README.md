@@ -7,6 +7,8 @@
 
 ## 简介
 
+新加入图形界面，再也不用对着cmd输出了
+
 此工具使用 `python`下载Copymanga中的漫画，以jpg的形式保存于电脑中
 
 无需打开网页，直接搜索想看的漫画，并支持指定范围下载
@@ -17,15 +19,21 @@
 
 ### 注意：由于pycryptodome的原因，目前本工具只测试Windows系统中的使用情况，Linux用户可以在安装pycrypto之后尝试使用。
 
-1.clone本仓库或者直接打包下载
+0. 小白用户右转在Releases里下载或者下载仓库后找到exe文件直接打开使用
 
-2.确保你安装了python 3.8或以上版本
+0.1 GUI版本由于各种原因打开速度会比较慢，打开时请有点耐心
 
-3.cd至本工具的目录并使用pip install -r requirements.txt安装所需依赖
+1. clone本仓库或者直接打包下载
 
-4.使用python打开CopymangaDownloader.py（如命令行执行 python ./CopymangaDownloader.py）
+2. 确保你安装了python 3.8或以上版本
 
-5.按照提示搜索输入自己想要的结果
+3. cd至本工具的目录并使用pip install -r requirements.txt安装所需依赖
+
+4. 使用python打开CopymangaDownloader.py（如命令行执行 python ./CopymangaDownloader.py）
+
+4.1 你也可以打开CopymangaDownloader_GUI.py来使用GUI版本通过命令行中的报错来发现问题所在
+
+5. 按照提示搜索输入自己想要的结果
 
 6.好好享受！
 
@@ -44,15 +52,13 @@
 
 2022/9/27: 加入多线程下载
 
-## 也许会有的未来更新
+2022/9/29: 加入了图形界面测试版程序
 
-* 加入关于输入不符合规范时的错误提示
+## 应该不会再有的未来更新
 
-* 修复作品有多个作者时仅显示第一位的问题
+* 发现BUG就修一下
 
-* 加入GUI提升使用体验
-
-* 摸鱼
+*偶尔会出现json解析错误无法下载的问题，等待调查后修复
 
 ## 关于api
 
